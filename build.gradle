@@ -1,0 +1,25 @@
+apply plugin: 'java'
+apply plugin: 'application'
+apply plugin: 'idea'
+mainClassName = "ListDir"
+version = '1.0'
+
+ext.sharedManifest = manifest {
+    attributes 'Main-Class': mainClassName
+    attributes 'Implementation-Title': 'Gradle Java Generic Project', 'Implementation-Version': version
+}
+
+repositories {
+    mavenCentral()
+}
+
+jar {
+    manifest = project.manifest {
+        from sharedManifest
+    }
+}
+
+dependencies {
+    compile 'commons-collections:commons-collections:3.2'
+    testCompile 'junit:junit:[4,)'
+}
