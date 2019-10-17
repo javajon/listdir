@@ -1,0 +1,14 @@
+FROM gradle:jdk10 as builder
+
+COPY --chown=gradle:gradle . /home/gradle/src
+WORKDIR /home/gradle/src
+RUN gradle build
+
+# Alpine Linux with OpenJDK JRE
+FROM openjdk:8-jre-alpine
+
+# Copy JAR into container image
+COPY --from=builder /home/gradle/src/build/libs/listdir-0.1.0.jar listdir.jar
+
+# Run application using executable jar application 
+CMD ["/usr/bin/java", "-jar", "listdir.jar"]
