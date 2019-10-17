@@ -6,10 +6,10 @@ import java.util.stream.Stream;
 
 public class ListDir {
     public static void main(String[] args)throws java.io.IOException {
+
+        boolean listingRequested = Boolean.parseBoolean(System.getProperty("list", "false"));
+
         String root = ".";
-        if (args.length > 0) {
-            root = args[0];
-        }
         System.out.println("Walking path: " + Paths.get(root));
         long size[] = { 0 };
         long count[] = { 0 } ;
@@ -18,7 +18,9 @@ public class ListDir {
                 File f = p.toFile();
                 size[0] += f.length();
                 count[0]++;
-                System.out.println(f.getPath());
+                if (listingRequested) {
+                    System.out.println(f.getPath());
+                }
             });
         }
         System.out.println(count[0] + " files with " + size[0] + " bytes");
