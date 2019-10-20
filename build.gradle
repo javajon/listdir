@@ -1,25 +1,22 @@
-apply plugin: 'java'
-apply plugin: 'application'
-apply plugin: 'idea'
-mainClassName = "ListDir"
-version = '0.1.0'
-
-ext.sharedManifest = manifest {
-    attributes 'Main-Class': mainClassName
-    attributes 'Implementation-Title': 'Gradle Java Generic Project', 'Implementation-Version': version
+plugins {
+    id 'org.beryx.jlink' version '2.16.2'
+    id "org.javamodularity.moduleplugin" version "1.1.1"
 }
 
-repositories {
-    mavenCentral()
+application {
+    mainClassName = 'org.dijure.lister.ListDir'
 }
 
 jar {
-    manifest = project.manifest {
-        from sharedManifest
+    manifest {
+        attributes 'Implementation-Title': "modular-listdir",
+                'Main-Class': 'org.dijure.lister.ListDir'
     }
 }
 
-dependencies {
-    compile 'commons-collections:commons-collections:3.2'
-    testCompile 'junit:junit:[4,)'
+jlink {
+    options = ['--strip-debug', '--compress', '2', '--no-header-files', '--no-man-pages']
+    launcher{
+        name = 'ListDir'
+    }
 }

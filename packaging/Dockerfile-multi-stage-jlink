@@ -1,0 +1,17 @@
+FROM gradle:jdk10 as builder
+
+COPY --chown=gradle:gradle . /home/gradle/src
+WORKDIR /home/gradle/src
+RUN gradle jlink
+
+# Alpine Linux with OpenJDK JRE
+FROM alpine
+
+ENV JAVA_MINIMAL=/opt/jre
+ENV PATH="$PATH:$JAVA_MINIMAL/bin"
+
+COPY --from=builder /home/gradle/src/build/image "$JAVA_MINIMAL"
+COPY --from=builder /home/gradle/src/build/libs/listdir.jar /opt/listdir.jar
+
+# Run application using executable jar application 
+CMD $JAVA_HOME/bin/java $JAVA_OPTS -jar /opt/listdir.jar
