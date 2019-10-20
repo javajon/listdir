@@ -1,0 +1,8 @@
+# Alpine Linux with OpenJDK JRE
+FROM openjdk:8-jre-slim
+
+# Copy JAR into container image
+COPY build/libs/listdir-0.1.0.jar listdir.jar
+
+# Run application using executable jar application 
+CMD ["/usr/bin/java", "-jar", "listdir.jar"]
