@@ -1,15 +1,10 @@
 plugins {
     id 'org.beryx.jlink' version '2.16.2'
     id "org.javamodularity.moduleplugin" version "1.1.1"
-    id "com.github.rmee.jdk-bootstrap" version "1.0.20190725142159"
 }
 
 application {
     mainClassName = 'org.dijure.lister.ListDir'
-}
-
-jdk {
-	useAdoptOpenJdk8('jdk8u202-b08')
 }
 
 jar {
