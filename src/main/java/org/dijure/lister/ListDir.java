@@ -9,10 +9,13 @@ import java.util.stream.Stream;
 public class ListDir {
     public static void main(String[] args)throws java.io.IOException {
 
+        long start = System.currentTimeMillis();
+
         boolean listingRequested = Boolean.parseBoolean(System.getProperty("list", "false"));
 
         String root = ".";
-        System.out.println("Walking path: " + Paths.get(root));
+        System.out.println("Listdir is walking path: " + Paths.get(root));
+       
         long size[] = { 0 };
         long count[] = { 0 } ;
         try (Stream<Path> paths = Files.walk(Paths.get(root))) {
@@ -21,10 +24,12 @@ public class ListDir {
                 size[0] += f.length();
                 count[0]++;
                 if (listingRequested) {
-                    System.out.println(f.getPath());
+                    System.out.println(" " + f.getPath());
                 }
             });
         }
-        System.out.println(count[0] + " files with " + size[0] + " bytes");
+
+        System.out.println("Listdir found " + count[0] + " files with " + size[0] + " bytes.");
+        System.out.println("Listdir finished: " + (System.currentTimeMillis() - start) + " milliseconds.");
     }
 }
