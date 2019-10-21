@@ -11,7 +11,7 @@ ENV JAVA_MINIMAL=/opt/jre
 ENV PATH="$PATH:$JAVA_MINIMAL/bin"
 
 COPY --from=builder /home/gradle/src/build/image "$JAVA_MINIMAL"
-COPY --from=builder /home/gradle/src/build/libs/listdir.jar /opt/listdir.jar
+COPY --from=builder /home/gradle/src/build/libs/listdir-0.1.0.jar /opt/listdir.jar
 
 # Run application using executable jar application 
 CMD $JAVA_HOME/bin/java $JAVA_OPTS -jar /opt/listdir.jar
