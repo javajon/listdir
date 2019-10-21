@@ -4,8 +4,6 @@ COPY --chown=gradle:gradle . /home/gradle/src
 WORKDIR /home/gradle/src
 RUN gradle jar jlink --build-file build-jlink.gradle
 
-RUN ls -R 
-
 # Alpine Linux
 FROM alpine
 
