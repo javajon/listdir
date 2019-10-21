@@ -2,7 +2,7 @@ FROM gradle:jdk12 as builder
 
 COPY --chown=gradle:gradle . /home/gradle/src
 WORKDIR /home/gradle/src
-RUN gradle jlink
+RUN gradle jlink --build-file build-jlink.gradle
 
 # Alpine Linux with OpenJDK JRE
 FROM alpine
