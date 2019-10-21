@@ -1,18 +1,21 @@
 plugins {
+    id 'application'
     id 'org.beryx.jlink' version '2.16.2'
     id 'org.javamodularity.moduleplugin' version '1.1.1'
 }
 
-def mainClass = 'org.dijure.lister.ListDir'
+version = '0.1.0'
+mainClassName = 'org.dijure.lister.ListDir'
 
-application {
-    mainClassName = mainClass
-}
+ext.sharedManifest = manifest {
+    attributes 'Main-Class': mainClassName
+    attributes 'Implementation-Title': 'Gradle Java Generic Project', 
+               'Implementation-Version': version
+}	
 
-jar {
-    manifest {
-        attributes 'Implementation-Title': "modular-listdir",
-                'Main-Class': mainClass
+jar {	    
+    manifest = project.manifest {
+        from sharedManifest
     }
 }
 

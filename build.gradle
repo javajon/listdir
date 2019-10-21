@@ -2,15 +2,17 @@ plugins {
     id 'application'
 }
 
-def mainClass = 'org.dijure.lister.ListDir'
+version = '0.1.0'
+mainClassName = 'org.dijure.lister.ListDir'
 
-application {
-    mainClassName = mainClass
-}
+ext.sharedManifest = manifest {
+    attributes 'Main-Class': mainClassName
+    attributes 'Implementation-Title': 'Gradle Java Generic Project', 
+               'Implementation-Version': version
+}	
 
-jar {
-    manifest {
-        attributes 'Implementation-Title': "modular-listdir",
-                'Main-Class': mainClass
+jar {	    
+    manifest = project.manifest {
+        from sharedManifest
     }
 }
