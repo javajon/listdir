@@ -4,7 +4,9 @@ COPY --chown=gradle:gradle . /home/gradle/src
 WORKDIR /home/gradle/src
 RUN gradle jar jlink --build-file build-jlink.gradle
 
-# Alpine Linux with OpenJDK JRE
+RUN ls -R 
+
+# Alpine Linux
 FROM alpine
 
 ENV JAVA_MINIMAL=/opt/jre
