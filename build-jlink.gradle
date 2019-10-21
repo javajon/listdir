@@ -1,0 +1,24 @@
+plugins {
+    id 'org.beryx.jlink' version '2.16.2'
+    id 'org.javamodularity.moduleplugin' version '1.1.1'
+}
+
+def mainClass = 'org.dijure.lister.ListDir'
+
+application {
+    mainClassName = mainClass
+}
+
+jar {
+    manifest {
+        attributes 'Implementation-Title': "modular-listdir",
+                'Main-Class': mainClass
+    }
+}
+
+jlink {
+    options = ['--strip-debug', '--compress', '2', '--no-header-files', '--no-man-pages']
+    launcher{
+        name = 'ListDir'
+    }
+}
