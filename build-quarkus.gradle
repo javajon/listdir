@@ -1,6 +1,7 @@
 plugins {
-    id 'application'
-    id 'io.quarkus' version '0.25.0'
+    id 'java'
+    // See: https://quarkus.io/guides/gradle-tooling
+    id 'io.quarkus' version '0.26.0'
 }
 
 repositories {
@@ -23,13 +24,13 @@ jar {
 }
 
 dependencies { 
-    implementation enforcedPlatform('io.quarkus:quarkus-bom:0.25.0')
+    implementation enforcedPlatform('io.quarkus:quarkus-bom:0.26.0')
     implementation 'io.quarkus:quarkus-resteasy'
 
-    implementation 'io.quarkus:quarkus-resteasy-deployment:0.25.0'
-    implementation 'io.quarkus:quarkus-resteasy-jackson:0.25.0'
+    implementation 'io.quarkus:quarkus-resteasy-deployment:0.26.0'
+    implementation 'io.quarkus:quarkus-resteasy-jackson:0.26.0'
 
-    testCompile 'io.quarkus:quarkus-junit5:0.25.0'
+    testCompile 'io.quarkus:quarkus-junit5:0.26.0'
     testCompile 'io.rest-assured:rest-assured:3.3.0'
 }
 
