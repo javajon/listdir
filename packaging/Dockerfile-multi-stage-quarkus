@@ -3,8 +3,8 @@
 FROM quay.io/quarkus/centos-quarkus-maven:19.2.0.1 AS build
 
 # Copy local source
-COPY . /home/gradle/src
-WORKDIR /home/gradle/src
+COPY . /project
+WORKDIR /project
 
 # Build jar and use JLink to create new distilled JRE
 RUN ./gradlew buildNative -b build-quarkus.gradle --docker-build=true
@@ -18,7 +18,7 @@ FROM alpine:latest
 WORKDIR /work/
 
 # Copy native image
-COPY --from=build /home/gradle/src/COPY build/*-runner /work/application
+COPY --from=build /project/build/*-runner /work/application
 
 RUN chmod 775 /work
 
