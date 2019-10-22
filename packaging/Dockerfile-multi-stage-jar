@@ -1,9 +1,12 @@
+## Stage 1 : Gradle build produces the application executable jar
 FROM gradle:jdk10 as builder
 
 COPY --chown=gradle:gradle . /home/gradle/src
 WORKDIR /home/gradle/src
 RUN gradle build
 
+
+## Stage 2 : Final image with JRE and application executable jar
 # Alpine Linux with OpenJDK JRE
 FROM openjdk:8-jre-alpine
 

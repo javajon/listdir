@@ -1,8 +1,13 @@
 plugins {
     id 'application'
+    id 'io.quarkus' version '0.25.0'
 }
 
 apply plugin: 'io.quarkus'
+
+repositories {
+    mavenCentral()
+}
 
 version = '0.1.0'
 mainClassName = 'org.dijure.lister.ListDir'
@@ -19,3 +24,7 @@ jar {
     }
 }
 
+dependencies { 
+    implementation enforcedPlatform('io.quarkus:quarkus-bom:0.25.0')
+    implementation 'io.quarkus:quarkus-resteasy'
+}

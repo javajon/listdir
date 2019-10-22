@@ -1,6 +1,7 @@
 # Because JLink provides binaries for final container, Linux flavors in both stages must match
 # Java 13+ will be supported in Gradle 6, this project uses Gradle 5x
 
+## Stage 1 : Gradle build produces the application executable jar and custom JRE
 # Alpine Linux with JDK
 FROM openjdk:12-jdk-alpine AS jlinker
 
@@ -11,6 +12,8 @@ WORKDIR /home/gradle/src
 # Build jar and use JLink to create new distilled JRE
 RUN ./gradlew jar jlink --build-file build-jlink.gradle
 
+
+## Stage 2 : Final image populated with custom JRE and application executable jar
 
 # Alpine Linux
 FROM alpine:latest
