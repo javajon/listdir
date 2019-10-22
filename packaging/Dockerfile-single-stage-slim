@@ -1,4 +1,3 @@
-# Alpine Linux with OpenJDK JRE
 FROM openjdk:8-jre-slim
 
 # Copy JAR into container image
