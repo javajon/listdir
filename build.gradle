@@ -2,8 +2,6 @@ plugins {
     id 'application'
 }
 
-apply plugin: 'io.quarkus'
-
 version = '0.1.0'
 mainClassName = 'org.dijure.lister.ListDir'
 
@@ -18,4 +16,3 @@ jar {
         from sharedManifest
     }
 }
-
