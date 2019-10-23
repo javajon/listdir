@@ -1,0 +1,15 @@
+## Stage 1 : Build native image with Gradle + Quarkus + GraalVM
+FROM oracle/graalvm-ce:19.2.1 as builder
+
+RUN gu install native-image
+
+WORKDIR /app
+COPY . /app
+
+RUN native-image -jar build/libs/listdir-0.1.0.jar
+
+## Stage 2 : Place native app in small container
+FROM alpine
+WORKDIR /work
+COPY --from=builder /app/listdir-0.1.0 .
+CMD ./listdir-0.1.0

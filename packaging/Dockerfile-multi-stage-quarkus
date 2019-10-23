@@ -25,13 +25,12 @@ RUN native-image -jar build/libs/listdir-0.1.0.jar
 
 
 ## Stage 2 : Place native app in small container
-FROM alpine:latest
+FROM registry.access.redhat.com/ubi8/ubi-minimal
 
 WORKDIR /work/
 
 # Copy native app
-COPY --from=build /tmp/ssl-libs/ /work/
-COPY --from=build /home/quarkus/source/listdir-0.1.0 /work/listdir-0.1.0
+COPY --from=build /home/quarkus/source/listdir-0.1.0 /work/
 
 RUN chmod 775 /work
 
