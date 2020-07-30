@@ -12,6 +12,7 @@ RUN native-image -jar build/libs/listdir-0.1.0.jar
 FROM frolvlad/alpine-glibc
 
 # native-image only compiles to glibc, not Alpine's musl libc, so larger special Alpine is used
+# TODO ^ can be done: https://jamesward.com/2020/05/07/graalvm-native-image-tips-tricks/
 
 WORKDIR /work
 COPY --from=builder /app/listdir-0.1.0 .
