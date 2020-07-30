@@ -5,6 +5,11 @@ plugins {
 version = '0.1.0'
 mainClassName = 'org.dijure.lister.ListDir'
 
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
 ext.sharedManifest = manifest {
     attributes 'Main-Class': mainClassName
     attributes 'Implementation-Title': 'Gradle Java Generic Project', 
